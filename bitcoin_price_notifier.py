@@ -37,10 +37,14 @@ def format_bitcoin_history(bitcoin_history):
 
 def main():
     bitcoin_history = []
+    initial = True
+    print("THRESHOLD set to", BITCOIN_PRICE_THRESHOLD)
     while True:
-        print("THRESHOLD set to", BITCOIN_PRICE_THRESHOLD)
         print("Checking bitcoin price..")
         price = get_latest_bitcoin_price()
+        if initial:
+            print(f"starting price is {price}")
+            initial = not initial
         date = datetime.now()
         # Send an emergency notification
         bitcoin_history.append({'date': date, 'price': price})
